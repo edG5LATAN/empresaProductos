@@ -4,16 +4,16 @@ import com.bodega.bodega.domain.dto.pulperia.DtoPulperia;
 import com.bodega.bodega.domain.service.ServicePulperia;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/v1/pulperia")
-@RequiredArgsConstructor
 public class ControllerPulperia {
 
-    private final ServicePulperia servicePulperia;
+    @Autowired
+    private ServicePulperia servicePulperia;
 
     @GetMapping("/mostrar")
     public ResponseEntity mostrar(){
@@ -21,7 +21,7 @@ public class ControllerPulperia {
     }
 
     @GetMapping("/unidad/{id}")
-    public ResponseEntity unidad(@RequestParam Long id){
+    public ResponseEntity unidad(@PathVariable Long id){
         return servicePulperia.unidad(id);
     }
 

@@ -5,6 +5,7 @@ import com.bodega.bodega.domain.dto.producto.DtoProductoMostrar;
 import com.bodega.bodega.domain.model.Producto;
 import com.bodega.bodega.domain.repository.RepositoryProducto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,10 +13,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Service
-@RequiredArgsConstructor
 public class ServiceProducto {
 
-    private final RepositoryProducto repositoryProducto;
+    @Autowired
+    private RepositoryProducto repositoryProducto;
 
     public ResponseEntity crear(DtoProducto dtoProducto, UriComponentsBuilder uriComponentsBuilder) {
         var producto=repositoryProducto.save(new Producto(dtoProducto));

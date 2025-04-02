@@ -6,14 +6,15 @@ import com.bodega.bodega.domain.dto.pulperia.DtoPulperiaMostrar;
 import com.bodega.bodega.domain.model.Pulperia;
 import com.bodega.bodega.domain.repository.RepositoryPulperia;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class ServicePulperia {
 
-    private final RepositoryPulperia repositoryPulperia;
+    @Autowired
+    private RepositoryPulperia repositoryPulperia;
     public ResponseEntity mostrar() {
         var pulperias= repositoryPulperia.findAll();
         return ResponseEntity.ok(pulperias.stream().map(DtoPulperiaMostrar::new).toList());

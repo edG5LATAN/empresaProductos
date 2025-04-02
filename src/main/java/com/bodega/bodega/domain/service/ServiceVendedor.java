@@ -5,6 +5,7 @@ import com.bodega.bodega.domain.dto.vendedor.DtoVendedorMostrar;
 import com.bodega.bodega.domain.model.Vendedor;
 import com.bodega.bodega.domain.repository.RepositoryVendedor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,10 +13,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @Service
-@RequiredArgsConstructor
 public class ServiceVendedor {
 
-     private final RepositoryVendedor repositoryVendedor;
+    @Autowired
+     private RepositoryVendedor repositoryVendedor;
 
     public ResponseEntity unidad(Long id) {
         var vendedor= repositoryVendedor.getReferenceById(id);
